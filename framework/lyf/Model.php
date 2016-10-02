@@ -6,6 +6,18 @@
 // +----------------------------------------------------------------------
 // | Author: jry <598821125@qq.com>
 // +----------------------------------------------------------------------
-
-// 加载lyf框架
-require './framework/lyf.php';
+namespace Lyf;
+use Illuminate\Database\Capsule\Manager as Capsule;
+/**
+ * Model
+ */
+class Model extends Illuminate\Database\Eloquent\Model
+{
+    public function init()
+    {
+        // Eloquent ORM
+        $capsule = new Capsule;
+        $capsule->addConnection($_config['datebase']);
+        $capsule->bootEloquent();
+    }
+}

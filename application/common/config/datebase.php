@@ -7,5 +7,16 @@
 // | Author: jry <598821125@qq.com>
 // +----------------------------------------------------------------------
 
-// 加载lyf框架
-require './framework/lyf.php';
+/**
+ * 数据库配置文件
+ */
+return array(
+    'driver'    => 'mysql',
+    'host'      => '127.0.0.1',
+    'database'  => 'lyf',
+    'username'  => 'root',
+    'password'  => '',
+    'charset'   => 'utf8',
+    'collation' => 'utf8_general_ci',
+    'prefix'    => ''
+);

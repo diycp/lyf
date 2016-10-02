@@ -7,14 +7,12 @@
 // | Author: jry <598821125@qq.com>
 // +----------------------------------------------------------------------
 
-use NoahBuscher\Macaw\Macaw;
+/**
+ * 默认配置文件
+ * 该文件请不要修改，如果要覆盖默认配置的值，可在应用配置文件中设定和默认不符的配置项
+ * 所有配置参数都可以在生效前动态改变
+ */
 
-Macaw::get('fuck', function() {
-  echo "成功！";
-});
-
-Macaw::get('(:all)', function($fu) {
-  echo '未匹配到路由<br>'.$fu;
-});
-
-Macaw::dispatch();
+return array(
+    'url_suffix'             => '.html',  // URL伪静态后缀设置
+);

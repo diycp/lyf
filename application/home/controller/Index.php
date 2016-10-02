@@ -6,6 +6,16 @@
 // +----------------------------------------------------------------------
 // | Author: jry <598821125@qq.com>
 // +----------------------------------------------------------------------
-
-// 加载lyf框架
-require './framework/lyf.php';
+namespace app\home\controller;
+use app\home\controller\Home;
+/**
+ * 前台基础控制器，其他控制器一般都要继承此控制器便于统一要求登陆等
+ */
+class Index extends Home
+{
+    // 这是前台（Home）首页方法
+    public function index()
+    {
+        echo "<h1>这是" . LYF_NAME . "前台首页</h1>";
+    }
+}

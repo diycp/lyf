@@ -6,6 +6,11 @@
 // +----------------------------------------------------------------------
 // | Author: jry <598821125@qq.com>
 // +----------------------------------------------------------------------
-
-// 加载lyf框架
-require './framework/lyf.php';
+namespace app\admin\model;
+use app\admin\model\Admin;
+/**
+ * 默认数据表模型
+ */
+class Index extends Admin
+{
+}

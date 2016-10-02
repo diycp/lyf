@@ -7,5 +7,12 @@
 // | Author: jry <598821125@qq.com>
 // +----------------------------------------------------------------------
 
-// 加载lyf框架
-require './framework/lyf.php';
+/**
+ * 公共配置文件
+ */
+return array(
+    'project_name'        => 'lyf_demo',      // 项目名称
+    'project_title'       => '零云演示项目',    // 项目标题
+    'project_version'     => '0.0.1',         // 项目版本标记
+    'project_version_ext' => 'beta1',         // 项目版本标记扩展
+);

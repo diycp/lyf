@@ -6,6 +6,10 @@
 // +----------------------------------------------------------------------
 // | Author: jry <598821125@qq.com>
 // +----------------------------------------------------------------------
-
-// 加载lyf框架
-require './framework/lyf.php';
+namespace app\common\controller;
+/**
+ * 公共控制器
+ */
+class Controller extends \lyf\Controller
+{
+}

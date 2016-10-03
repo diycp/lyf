@@ -7,6 +7,7 @@
 // | Author: jry <598821125@qq.com>
 // +----------------------------------------------------------------------
 namespace lyf;
+use lyf\Config;
 /**
  * 初始化
  */
@@ -19,34 +20,11 @@ class Start
         require './vendor/autoload.php';  // 加载composer提供的autoload文件
         spl_autoload_register('\lyf\Start::autoload');  // 注册AUTOLOAD方法
 
-        // 加载配置文件
-        $_config = Start::getConfig();
-
-        // 定义当前请求的系统常量
-        define('REQUEST_TIME', $_SERVER['REQUEST_TIME']);
-        define('REQUEST_METHOD', $_SERVER['REQUEST_METHOD']);
-        define('IS_GET', REQUEST_METHOD == 'GET' ? true : false);
-        define('IS_POST', REQUEST_METHOD == 'POST' ? true : false);
-        define('IS_PUT', REQUEST_METHOD == 'PUT' ? true : false);
-        define('IS_DELETE', REQUEST_METHOD == 'DELETE' ? true : false);
-        define('IS_AJAX', ((isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')) ? true : false);
+        // 配置初始化
+        Config::init();
 
         // URL调度
         Route::dispatch();
-    }
-
-    // 获取配置
-    public static function getConfig ()
-    {
-        $_config = include LYF_PATH.'config/default.php';
-        $common_config = include APP_PATH.'common/config/config.php';
-        $common_config['datebase'] = include APP_PATH.'common/config/datebase.php';  // 数据库配置
-        $common_config['route'] = include APP_PATH.'common/config/routes.php';       // 路由配置
-
-        return array_merge(
-            $_config,        // 框架默认配置
-            $common_config   // 应用应用公共路由配置
-        );
     }
 
     /**

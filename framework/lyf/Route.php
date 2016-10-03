@@ -7,6 +7,7 @@
 // | Author: jry <598821125@qq.com>
 // +----------------------------------------------------------------------
 namespace Lyf;
+use lyf\Config;
 /**
  * 路由
  */
@@ -16,13 +17,26 @@ class Route
     public static function dispatch ()
     {
         // 解析url成数组
-        $paths = '';
-        if (!empty($_SERVER['PATH_INFO'])) {   // pathinfo模式
-            $paths = explode('/', trim($_SERVER['PATH_INFO'], '/'));
-        } elseif ($_GET['s']) {
-            $paths = explode('/', trim($_GET['s'], '/'));
+        $path_info = '';
+        if ($_SERVER['PATH_INFO']) {   // pathinfo模式
+            $path_info = rtrim($_SERVER['PATH_INFO'], Config::get('url_suffix'));
+            $paths = explode('/', trim($path_info, '/'));
         } else {
-            exit('错误');
+            $paths = array();
+            $paths[0] = Config::get('default_module');
+            $paths[1] = Config::get('default_controller');
+            $paths[2] = Config::get('default_action');
+        }
+
+        // 特殊路由
+        if (count($paths) === 1) {  // pathinfo只有一个参数
+            // 访问模块的默认方法
+            $paths[1] = Config::get('default_controller');
+            $paths[2] = Config::get('default_action');
+        }
+        if (count($paths) === 2) {  // pathinfo只有一个参数
+            // 访问模块的默认方法
+            $paths[2] = Config::get('default_action');
         }
 
         // 解析url中的模型/控制器/方法

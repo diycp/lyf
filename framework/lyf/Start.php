@@ -14,7 +14,7 @@ use lyf\Config;
 class Start
 {
     // 框架初始化
-    public static function run ()
+    public static function init ()
     {
         // autoload
         require './vendor/autoload.php';  // 加载composer提供的autoload文件

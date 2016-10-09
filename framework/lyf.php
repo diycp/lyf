@@ -38,4 +38,4 @@ defined('APP_PATH') or define('APP_PATH', dirname($_SERVER['SCRIPT_FILENAME']) .
 
 // 框架初始化
 require LYF_PATH . 'lyf/Start.php';
-lyf\Start::run();
+lyf\Start::init();

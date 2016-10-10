@@ -6,7 +6,7 @@
 // +----------------------------------------------------------------------
 // | Author: jry <598821125@qq.com>
 // +----------------------------------------------------------------------
-namespace Lyf;
+namespace lyf;
 use lyf\Config;
 /**
  * 路由
@@ -40,57 +40,12 @@ class Route
         }
 
         // 解析url中的模型/控制器/方法
-        self::getModel($paths);
-        self::getController($paths);
-        self::getAction($paths);
+        Config::set('route.current_model', strip_tags($paths[0]));
+        Config::set('route.current_controoler', strip_tags(ucfirst($paths[1])));
+        Config::set('route.current_action', strip_tags($paths[1]));
 
         // 执行方法
-        self::exec();
-    }
-
-    /**
-     * 获取模型
-     * @access public
-     * @return void
-     */
-    public static function getModel($paths)
-    {
-        // 获取模块名称
-        $module = strip_tags($paths[0]);
-        define('MODULE_NAME', $module);
-        // 检测模块是否存在
-        if (MODULE_NAME && is_dir(APP_PATH . MODULE_NAME)) {
-            define('MODULE_PATH', APP_PATH . MODULE_NAME . '/');
-        } else {
-            die('模块不存在：' . MODULE_NAME);
-        }
-        return;
-    }
-
-    /**
-     * 获取控制器
-     * @access public
-     * @return void
-     */
-    public static function getController($paths)
-    {
-        // 获取控制器名称
-        $controller = strip_tags(ucfirst($paths[1]));
-        define('CONTROLLER_NAME', $controller);
-        return;
-    }
-
-    /**
-     * 获取方法
-     * @access public
-     * @return void
-     */
-    public static function getAction($paths)
-    {
-        // 获取aciton名称
-        $action = strip_tags($paths[2]);
-        define('ACTION_NAME', $action);
-        return;
+        self::exec(Config::get('route.current_model'), Config::get('route.current_controoler'), Config::get('route.current_action'));
     }
 
     /**
@@ -98,28 +53,28 @@ class Route
      * @access public
      * @return void
      */
-    public static function exec()
+    public static function exec($model, $controller, $action)
     {
-        if (!preg_match('/^[A-Za-z](\/|\w)*$/', CONTROLLER_NAME)) {
+        if (!preg_match('/^[A-Za-z](\/|\w)*$/', $controller)) {
             // 安全检测
             $controller = false;
         } else {
             //创建控制器实例
-            $class = 'app\\' . MODULE_NAME . '\controller\\' . CONTROLLER_NAME;
+            $class = 'app\\' . $model . '\controller\\' . $controller;
             $controller = new $class ;
         }
 
         if (!$controller) {
-            die('控制器不存在：' . CONTROLLER_NAME);
+            die('控制器不存在：' . $controller);
         }
 
         // 调用控制器的方法
         try {
-            self::invokeAction($controller, ACTION_NAME);
+            self::invokeAction($controller, $action);
         } catch (\ReflectionException $e) {
             // 方法调用发生异常后 引导到__call方法处理
             $method = new \ReflectionMethod($controller, '__call');
-            $method->invokeArgs($controller, array(ACTION_NAME, ''));
+            $method->invokeArgs($controller, array($action, ''));
         }
         return;
     }

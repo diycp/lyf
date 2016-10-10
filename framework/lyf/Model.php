@@ -6,15 +6,14 @@
 // +----------------------------------------------------------------------
 // | Author: jry <598821125@qq.com>
 // +----------------------------------------------------------------------
-namespace Lyf;
+namespace lyf;
 use lyf\Config;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Capsule\Manager as Capsule;
-use Illuminate\Database\Eloquent\Model as BaseModel;
 /**
  * Model
  */
-class Model extends BaseModel
+class Model extends \Illuminate\Database\Eloquent\Model
 {
     /**
      * 该模型是否被自动维护时间戳
@@ -24,9 +23,8 @@ class Model extends BaseModel
     public $timestamps = false;
 
     // 初始化
-    public function init()
+    public static function init()
     {
-        // Eloquent ORM
         $capsule = new Capsule;
         $capsule->addConnection(Config::get('datebase'));
         $capsule->setAsGlobal();  // Make this Capsule instance available globally via static methods... (optional)

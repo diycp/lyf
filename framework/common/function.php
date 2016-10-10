@@ -21,17 +21,17 @@ function dump($value) {
 // 实例化数据模型
 function model($name) {
     // 解析参数
-    $name = explode('/', $name);
-    if (count($name) === 1) {
-        $current_model = strtolower(Config::get('route.current_model'));
-        $class = $current_model . '\\model\\' .$name[0];
+    if (false === strpos($name, '/')) {  // 不存在/
+        $current_model = Config::get('route.current_model');
+        $class = $current_model . '\\model\\' .$name;
 
         // 优先寻找当前模块下的模型，没有则寻找公共模型
         $filename = APP_PATH . str_replace('\\', '/', $class) . '.php';
         if (!is_file($filename)) {
-            $class = 'common\\model\\' .$name[0];
+            $class = 'common\\model\\' .$name;
         }
-    } else if (count($name) === 2){
+    } else {
+        $name = explode('/', $name);
         $class = $name[0] . '\\model\\' . $name[1];
     }
 

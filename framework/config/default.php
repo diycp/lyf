@@ -13,8 +13,17 @@
  * 所有配置参数都可以在生效前动态改变
  */
 return array(
-    'default_module'         => 'Home',   // 默认模块
-    'default_controller'     => 'Index',  // 默认控制器
-    'default_action'         => 'index',  // 默认方法
-    'url_suffix'             => '.html',  // URL伪静态后缀设置
+    'default_module'         => 'home',       // 默认模块
+    'default_controller'     => 'Index',      // 默认控制器
+    'default_action'         => 'index',      // 默认方法
+    'url_suffix'             => '.html',      // URL伪静态后缀设置
+    'runtime_path'           => './runtime/',  // URL伪静态后缀设置
+
+    // 模板引擎配置
+    'view' => array(
+        'debug'              => 'true',   // 模板引擎调试模式
+        'cache'              => 'true',   // 模板引擎开启缓存
+        'cache_lifetime'     => 120,      // 模板引擎开启缓存时间
+        'suffix'             => '.html',  // 模板引擎后缀
+    ),
 );

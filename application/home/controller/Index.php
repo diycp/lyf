@@ -18,7 +18,6 @@ class Index extends Home
     public function index()
     {
         $result = model('common/Index')::all()->toArray();
-        dump($result);
-        echo "<h1>这是" . LYF_NAME . "前台首页</h1>";
+        $this->display();
     }
 }

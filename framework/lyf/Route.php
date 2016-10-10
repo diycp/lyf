@@ -42,7 +42,7 @@ class Route
         // 解析url中的模型/控制器/方法
         Config::set('route.current_model', strip_tags($paths[0]));
         Config::set('route.current_controoler', strip_tags(ucfirst($paths[1])));
-        Config::set('route.current_action', strip_tags($paths[1]));
+        Config::set('route.current_action', strip_tags($paths[2]));
 
         // 执行方法
         self::exec(Config::get('route.current_model'), Config::get('route.current_controoler'), Config::get('route.current_action'));

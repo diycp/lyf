@@ -7,19 +7,21 @@
 // | Author: jry <598821125@qq.com>
 // +----------------------------------------------------------------------
 namespace lyf;
+
 use lyf\Config;
 use lyf\Model;
+
 /**
  * 初始化
  */
 class Start
 {
     // 框架初始化
-    public static function init ()
+    public static function init()
     {
         // autoload
-        require ROOT_PATH . 'vendor/autoload.php';      // 加载composer提供的autoload文件
-        spl_autoload_register('\lyf\Start::autoload');  // 注册AUTOLOAD方法
+        require ROOT_PATH . 'vendor/autoload.php'; // 加载composer提供的autoload文件
+        spl_autoload_register('\lyf\Start::autoload'); // 注册AUTOLOAD方法
 
         // 配置初始化
         Config::init();
@@ -48,9 +50,9 @@ class Start
                 $filename = LYF_PATH . str_replace('\\', '/', $class) . '.php';
             } else if ($name === 'app') {
                 // 应用为命名空间
-                $filename = APP_PATH . substr(str_replace('\\', '/', $class), 3) . '.php';  
+                $filename = APP_PATH . substr(str_replace('\\', '/', $class), 3) . '.php';
             }
-            if (is_file($filename)) {  
+            if (is_file($filename)) {
                 // Win环境下面严格区分大小写
                 if (IS_WIN && false === strpos(str_replace('/', '\\', realpath($filename)), $class . '.php')) {
                     return;

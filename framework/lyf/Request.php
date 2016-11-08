@@ -7,6 +7,7 @@
 // | Author: jry <59821125@qq.com> <http://www.corethink.cn>
 // +----------------------------------------------------------------------
 namespace lyf;
+
 /**
  * 请求类
  */
@@ -22,20 +23,20 @@ class Request
     protected $var_method      = '_method';
     protected $var_ajax        = '_ajax';
     protected $var_pjax        = '_pjax';
-    protected $filter;           // 全局过滤规则
+    protected $filter; // 全局过滤规则
 
-    protected $server  = [];     // 服务器变量
-    protected $session = [];     // session
-    protected $cookie  = [];     // cookie
-    protected $input;            // php://input
-    protected $domain;           // 域名
-    protected $url;              // 完整url
-    protected $baseUrl;          // 不带参数的url
-    protected $baseFile;         // 当前执行的文件
-    protected $root;             // 访问的ROOT地址
-    protected $pathinfo;         // pathinfo
-    protected $path;             // 不含URL后缀
-    protected $method;           // 请求方法
+    protected $server  = []; // 服务器变量
+    protected $session = []; // session
+    protected $cookie  = []; // cookie
+    protected $input; // php://input
+    protected $domain; // 域名
+    protected $url; // 完整url
+    protected $baseUrl; // 不带参数的url
+    protected $baseFile; // 当前执行的文件
+    protected $root; // 访问的ROOT地址
+    protected $pathinfo; // pathinfo
+    protected $path; // 不含URL后缀
+    protected $method; // 请求方法
 
     /**
      * @var array 请求参数
@@ -45,9 +46,9 @@ class Request
     protected $post    = [];
     protected $request = [];
     protected $put;
-    protected $file    = [];
+    protected $file = [];
 
-    protected $header  = [];
+    protected $header = [];
     protected $content;
 
     /**
@@ -404,7 +405,7 @@ class Request
     public function path()
     {
         if (is_null($this->path)) {
-            $suffix   = $this->url_html_suffix; 
+            $suffix   = $this->url_html_suffix;
             $pathinfo = $this->pathinfo();
             if (false === $suffix) {
                 // 禁止伪静态访问
@@ -468,8 +469,9 @@ class Request
      * @return bool
      * @author jry <598821125@qq.com>
      */
-    public function isWeixin() {
-        if (strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') !== false ) {
+    public function isWeixin()
+    {
+        if (strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') !== false) {
             return true;
         } else {
             return false;
@@ -1176,7 +1178,6 @@ class Request
     {
         return $this->server('REMOTE_PORT');
     }
-
 
     /**
      * 设置或者获取当前请求的content

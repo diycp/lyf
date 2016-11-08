@@ -7,34 +7,36 @@
 // | Author: jry <598821125@qq.com>
 // +----------------------------------------------------------------------
 namespace lyf;
+
 use lyf\Config;
+
 /**
  * 路由
  */
 class Route
 {
     // URL解析
-    public static function dispatch ()
+    public static function dispatch()
     {
         // 解析url成数组
         $path_info = '';
-        if ($_SERVER['PATH_INFO']) {   // pathinfo模式
+        if ($_SERVER['PATH_INFO']) { // pathinfo模式
             $path_info = rtrim($_SERVER['PATH_INFO'], Config::get('url_suffix'));
-            $paths = explode('/', trim($path_info, '/'));
+            $paths     = explode('/', trim($path_info, '/'));
         } else {
-            $paths = array();
+            $paths    = array();
             $paths[0] = Config::get('default_module');
             $paths[1] = Config::get('default_controller');
             $paths[2] = Config::get('default_action');
         }
 
         // 特殊路由
-        if (count($paths) === 1) {  // pathinfo只有一个参数
+        if (count($paths) === 1) { // pathinfo只有一个参数
             // 访问模块的默认方法
             $paths[1] = Config::get('default_controller');
             $paths[2] = Config::get('default_action');
         }
-        if (count($paths) === 2) {  // pathinfo只有一个参数
+        if (count($paths) === 2) { // pathinfo只有一个参数
             // 访问模块的默认方法
             $paths[2] = Config::get('default_action');
         }
@@ -60,8 +62,8 @@ class Route
             $controller = false;
         } else {
             //创建控制器实例
-            $class = 'app\\' . $model . '\controller\\' . $controller;
-            $controller = new $class ;
+            $class      = 'app\\' . $model . '\controller\\' . $controller;
+            $controller = new $class;
         }
 
         if (!$controller) {

@@ -7,8 +7,9 @@
 // | Author: jry <598821125@qq.com>
 // +----------------------------------------------------------------------
 namespace app\home\controller;
+
 use app\home\controller\Home;
-use lyf\Config;
+
 /**
  * 前台基础控制器，其他控制器一般都要继承此控制器便于统一要求登陆等
  */

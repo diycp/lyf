@@ -7,9 +7,10 @@
 // | Author: jry <598821125@qq.com>
 // +----------------------------------------------------------------------
 namespace lyf;
-use lyf\Config;
-use Illuminate\Database\Eloquent\SoftDeletes;
+
 use Illuminate\Database\Capsule\Manager as Capsule;
+use lyf\Config;
+
 /**
  * Model
  */
@@ -27,7 +28,7 @@ class Model extends \Illuminate\Database\Eloquent\Model
     {
         $capsule = new Capsule;
         $capsule->addConnection(Config::get('datebase'));
-        $capsule->setAsGlobal();  // Make this Capsule instance available globally via static methods... (optional)
+        $capsule->setAsGlobal(); // Make this Capsule instance available globally via static methods... (optional)
         $capsule->bootEloquent();
     }
 }

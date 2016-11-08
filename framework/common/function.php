@@ -12,26 +12,28 @@ use lyf\Config;
  */
 
 // 调试数据
-function dump($value) {
+function dump($value)
+{
     echo '<pre>';
     var_dump($value);
     echo '</pre>';
 }
 
 // 实例化数据模型
-function model($name) {
+function model($name)
+{
     // 解析参数
-    if (false === strpos($name, '/')) {  // 不存在/
+    if (false === strpos($name, '/')) { // 不存在/
         $current_model = Config::get('route.current_model');
-        $class = $current_model . '\\model\\' .$name;
+        $class         = $current_model . '\\model\\' . $name;
 
         // 优先寻找当前模块下的模型，没有则寻找公共模型
         $filename = APP_PATH . str_replace('\\', '/', $class) . '.php';
         if (!is_file($filename)) {
-            $class = 'common\\model\\' .$name;
+            $class = 'common\\model\\' . $name;
         }
     } else {
-        $name = explode('/', $name);
+        $name  = explode('/', $name);
         $class = $name[0] . '\\model\\' . $name[1];
     }
 

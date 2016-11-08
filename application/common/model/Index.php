@@ -7,7 +7,9 @@
 // | Author: jry <598821125@qq.com>
 // +----------------------------------------------------------------------
 namespace app\common\model;
+
 use app\common\model\Model;
+
 /**
  * 默认数据表模型
  */

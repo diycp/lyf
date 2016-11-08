@@ -7,6 +7,7 @@
 // | Author: jry <598821125@qq.com>
 // +----------------------------------------------------------------------
 namespace lyf;
+
 /**
  * 配置
  */
@@ -23,14 +24,14 @@ class Config
      */
     public static function init()
     {
-        $_config = include LYF_PATH.'config/default.php';
-        $common_config = include APP_PATH.'common/config/config.php';
-        $common_config['datebase'] = include APP_PATH.'common/config/datebase.php';  // 数据库配置
-        $common_config['route'] = include APP_PATH.'common/config/routes.php';       // 路由配置
+        $_config                   = include LYF_PATH . 'config/default.php';
+        $common_config             = include APP_PATH . 'common/config/config.php';
+        $common_config['datebase'] = include APP_PATH . 'common/config/datebase.php'; // 数据库配置
+        $common_config['route']    = include APP_PATH . 'common/config/routes.php'; // 路由配置
 
         $config = array_merge(
-            $_config,        // 框架默认配置
-            $common_config   // 应用应用公共路由配置
+            $_config, // 框架默认配置
+            $common_config // 应用应用公共路由配置
         );
         self::set($config);
     }

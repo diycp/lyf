@@ -7,7 +7,9 @@
 // | Author: jry <598821125@qq.com>
 // +----------------------------------------------------------------------
 namespace lyf;
+
 use lyf\Config;
+
 /**
  * 控制器
  */
@@ -21,14 +23,15 @@ class Controller
     protected $view = null;
 
     // 输出模版或者返回数据
-    protected function display($template = '') {
+    protected function display($template = '')
+    {
         if (Config::get('request.is_ajax')) {
-            return json_encode($this->data);  // 如果是ajax请求直接返回数据
+            return json_encode($this->data); // 如果是ajax请求直接返回数据
         } else {
             // 构造模板路径
             if ($template === '') {
                 $template = strtolower(Config::get('route.current_controoler')) . '/' . Config::get('route.current_action');
-            } elseif (false === strpos($template, '/')) {  // 不存在/
+            } elseif (false === strpos($template, '/')) { // 不存在/
                 $template = strtolower(Config::get('route.current_controoler')) . '/' . $template;
             }
 

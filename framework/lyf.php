@@ -39,5 +39,5 @@ defined('LYF_PATH') or define('LYF_PATH', __DIR__ . '/'); // 框架目录
 defined('APP_PATH') or define('APP_PATH', dirname($_SERVER['SCRIPT_FILENAME']) . '/application/'); // 应用目录，也就是你项目需要写代码的目录
 
 // 框架初始化
-require LYF_PATH . 'lyf/Start.php';
-lyf\Start::init();
+require LYF_PATH . 'lyf/App.php';
+lyf\App::init();

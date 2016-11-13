@@ -8,6 +8,10 @@
 // +----------------------------------------------------------------------
 namespace lyf;
 
+use lyf\Config;
+use lyf\Session;
+use lyf\File;
+
 /**
  * 请求类
  */
@@ -98,6 +102,9 @@ class Request
                 $this->$name = $item;
             }
         }
+        if (is_null($this->filter)) {
+            $this->filter = Config::get('default_filter');
+        }w
 
         // 保存 php://input
         $this->input = file_get_contents('php://input');
